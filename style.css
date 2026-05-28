@@ -1,0 +1,477 @@
+/* 
+    RESET GERAL
+
+    Remove margens e espaçamentos padrões do navegador.
+    Isso ajuda o layout a ficar igual em diferentes navegadores.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+    VARIÁVEIS DE CORES
+
+    Aqui ficam as cores principais do site.
+    Elas ajudam a manter o visual de papel antigo e almanaque vintage.
+*/
+:root {
+    --cor-fundo: #efe3bd;
+    --cor-papel: #fff8dc;
+    --cor-titulo: #2e5f35;
+    --cor-detalhe: #c89b2c;
+    --cor-texto: #3a2f22;
+    --cor-borda: #d2b36c;
+    --sombra-papel: 0 18px 45px rgba(74, 52, 24, 0.18);
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_pagina
+
+    Antes: base da página antiga.
+    Agora: fundo geral do almanaque.
+*/
+.sc_felipe_pagina {
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--cor-texto);
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 30%),
+        linear-gradient(135deg, #e7d39d, var(--cor-fundo));
+    padding: 32px 16px;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_heroico
+
+    Antes: mudava o visual da transformação.
+    Agora: muda a paleta quando o usuário folheia para o caderno de saúde.
+*/
+.sc_felipe_pagina.sc_felipe_heroico {
+    --cor-fundo: #ead7a6;
+    --cor-papel: #fff2c7;
+    --cor-titulo: #7a4c24;
+    --cor-detalhe: #b9743a;
+    --cor-texto: #3b2a1d;
+    --cor-borda: #c9985b;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_container
+
+    Antes: centralizava o conteúdo.
+    Agora: cria a moldura principal do almanaque.
+*/
+.sc_felipe_container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    background: rgba(255, 250, 229, 0.82);
+    border: 2px solid var(--cor-borda);
+    border-radius: 26px;
+    box-shadow: var(--sombra-papel);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+
+    /* Dá profundidade para o efeito 3D do folheamento. */
+    perspective: 1200px;
+}
+
+/* Textura discreta para lembrar papel antigo. */
+.sc_felipe_container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(70, 45, 20, 0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+/* Cabeçalho principal do almanaque. */
+.sc_felipe_cabecalho {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 2px double var(--cor-borda);
+    margin-bottom: 28px;
+}
+
+/* Selo superior decorativo. */
+.sc_felipe_selo {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 999px;
+    color: var(--cor-titulo);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Título principal. */
+.sc_felipe_cabecalho h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--cor-titulo);
+    line-height: 1.05;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Texto “Edição 1978”. */
+.sc_felipe_cabecalho h1 span {
+    display: block;
+    font-size: 0.45em;
+    color: var(--cor-detalhe);
+    margin-top: 8px;
+}
+
+/* Linha de autoria. */
+.sc_felipe_autor {
+    margin-top: 14px;
+    font-size: 1rem;
+}
+
+/* Destaque no nome do autor. */
+.sc_felipe_autor strong {
+    color: var(--cor-titulo);
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_card_perfil
+
+    Antes: card principal de perfil.
+    Agora: capa do caderno ativo.
+
+    A transição também está aqui para permitir o efeito de folhear.
+*/
+.sc_felipe_card_perfil {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: var(--cor-papel);
+    border: 2px solid var(--cor-borda);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+
+    /* Controla a suavidade da troca visual e da animação. */
+    transition:
+        background 0.5s ease,
+        border-color 0.5s ease,
+        opacity 0.45s ease,
+        transform 0.45s ease;
+
+    /* Mantém o efeito 3D da rotação. */
+    transform-style: preserve-3d;
+}
+
+/* Área da imagem principal. */
+.sc_felipe_area_foto {
+    flex: 0 0 380px;
+    text-align: center;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_foto
+
+    Antes: foto do perfil.
+    Agora: imagem da página histórica.
+
+    object-fit: contain impede que a imagem vertical seja cortada.
+*/
+.sc_felipe_foto {
+    width: 100%;
+    max-width: 380px;
+    max-height: 560px;
+    object-fit: contain;
+    border-radius: 18px;
+    border: 6px solid #f7e8b4;
+    background: #fff8dc;
+    box-shadow: 0 12px 28px rgba(69, 44, 19, 0.22);
+    filter: sepia(0.12) contrast(0.98);
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* Efeito simples ao passar o mouse na imagem. */
+.sc_felipe_foto:hover {
+    transform: rotate(-1deg) scale(1.02);
+    filter: sepia(0.2) contrast(1);
+}
+
+/* Legenda da imagem. */
+.sc_felipe_area_foto figcaption {
+    margin-top: 10px;
+    font-size: 0.86rem;
+    font-style: italic;
+    color: rgba(58, 47, 34, 0.75);
+}
+
+/* Link da fonte histórica. */
+.sc_felipe_fonte_img {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--cor-titulo);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--cor-titulo);
+}
+
+/* Efeito no link da fonte. */
+.sc_felipe_fonte_img:hover {
+    color: var(--cor-detalhe);
+    border-bottom-color: var(--cor-detalhe);
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_info_principal
+
+    Antes: área dos dados principais do perfil.
+    Agora: área textual do caderno ativo.
+*/
+.sc_felipe_info_principal {
+    flex: 1;
+}
+
+/* Rótulo do caderno. */
+.sc_felipe_chapeu {
+    color: var(--cor-detalhe);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+/* Título do caderno. */
+.sc_felipe_nome {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--cor-titulo);
+    line-height: 1.05;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo do caderno. */
+.sc_felipe_subtitulo {
+    font-size: 1.15rem;
+    color: var(--cor-detalhe);
+    margin-bottom: 16px;
+}
+
+/* Texto introdutório. */
+.sc_felipe_intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_btn_transformar
+
+    Antes: botão de transformação.
+    Agora: botão para folhear o almanaque.
+*/
+.sc_felipe_btn_transformar {
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(135deg, var(--cor-titulo), var(--cor-detalhe));
+    color: #fffbea;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 8px 18px rgba(67, 43, 17, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+/* Efeito ao passar o mouse no botão. */
+.sc_felipe_btn_transformar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(67, 43, 17, 0.28);
+}
+
+/* Efeito ao clicar no botão. */
+.sc_felipe_btn_transformar:active {
+    transform: translateY(0);
+}
+
+/* Mostra que o botão está travado durante a animação. */
+.sc_felipe_btn_transformar:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_grid_cards
+
+    Antes: grid de cards.
+    Agora: grid dos textos do almanaque.
+
+    Também recebe transição para participar do folheamento.
+*/
+.sc_felipe_grid_cards {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    transform-style: preserve-3d;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_card
+
+    Antes: card padrão.
+    Agora: bloco editorial do almanaque.
+*/
+.sc_felipe_card {
+    background: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
+    border-radius: 18px;
+    padding: 20px;
+    min-height: 150px;
+    box-shadow: 0 8px 18px rgba(69, 44, 19, 0.1);
+    transition: transform 0.25s ease, background 0.5s ease, border-color 0.5s ease;
+}
+
+/* Efeito visual nos cards. */
+.sc_felipe_card:hover {
+    transform: translateY(-4px);
+}
+
+/* Etiqueta de cada card. */
+.sc_felipe_card_rotulo {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: rgba(200, 155, 44, 0.16);
+    color: var(--cor-titulo);
+    font-size: 0.76rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Título dentro do card. */
+.sc_felipe_card h4 {
+    font-size: 1.25rem;
+    color: var(--cor-titulo);
+    line-height: 1.35;
+}
+
+/* Texto dentro do card. */
+.sc_felipe_card p {
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+/* 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_card_descricao
+
+    Antes: card maior de descrição.
+    Agora: texto principal do almanaque.
+*/
+.sc_felipe_card_descricao {
+    grid-column: span 2;
+    min-height: 190px;
+    border-width: 2px;
+}
+
+/* 
+    ANIMAÇÃO DE FOLHEAR — SAÍDA
+
+    Esta classe é colocada pelo JavaScript antes da troca de conteúdo.
+    Ela faz a página atual sair para a esquerda.
+*/
+.sc_felipe_folheando_saida {
+    opacity: 0;
+    transform: translateX(-45px) rotateY(-12deg) scale(0.97);
+}
+
+/* 
+    ANIMAÇÃO DE FOLHEAR — ENTRADA
+
+    Esta classe posiciona o novo conteúdo à direita e invisível.
+    Depois o JavaScript remove a classe, e o conteúdo entra suavemente.
+*/
+.sc_felipe_folheando_entrada {
+    opacity: 0;
+    transform: translateX(45px) rotateY(12deg) scale(0.97);
+}
+
+/* Rodapé com crédito da fonte. */
+.sc_felipe_rodape {
+    position: relative;
+    z-index: 1;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--cor-borda);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Link do rodapé. */
+.sc_felipe_rodape a {
+    color: var(--cor-titulo);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Efeito no link do rodapé. */
+.sc_felipe_rodape a:hover {
+    color: var(--cor-detalhe);
+}
+
+/* Responsividade para tablets. */
+@media (max-width: 900px) {
+    .sc_felipe_card_perfil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sc_felipe_area_foto {
+        flex: initial;
+        width: 100%;
+    }
+
+    .sc_felipe_grid_cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsividade para celulares. */
+@media (max-width: 620px) {
+    .sc_felipe_pagina {
+        padding: 18px 10px;
+    }
+
+    .sc_felipe_container {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .sc_felipe_card_perfil {
+        padding: 18px;
+    }
+
+    .sc_felipe_grid_cards {
+        grid-template-columns: 1fr;
+    }
+
+    .sc_felipe_card_descricao {
+        grid-column: span 1;
+    }
+
+    .sc_felipe_btn_transformar {
+        width: 100%;
+    }
+}

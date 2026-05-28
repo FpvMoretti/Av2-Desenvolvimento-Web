@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Permite o uso correto de acentos e caracteres especiais. -->
+    <meta charset="UTF-8">
+
+    <!-- Faz o site se adaptar ao tamanho da tela do usuário. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título exibido na aba do navegador. -->
+    <title>Almanaque Biotônico Fontoura - Edição 1978</title>
+
+    <!-- Importa o arquivo CSS externo. -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- 
+    CLASSE REUTILIZADA DA AV1: .sc_felipe_pagina
+
+    Antes: era a base visual da página antiga.
+    Agora: é a base do almanaque, com fundo de papel envelhecido.
+-->
+<body class="sc_felipe_pagina">
+
+    <!-- 
+        CLASSE REUTILIZADA DA AV1: .sc_felipe_container
+
+        Antes: centralizava o conteúdo principal.
+        Agora: funciona como a moldura do Almanaque Biotônico Fontoura.
+    -->
+    <main class="sc_felipe_container">
+
+        <!-- Cabeçalho fixo: ele não muda ao folhear o almanaque. -->
+        <header class="sc_felipe_cabecalho">
+
+            <!-- Selo visual para reforçar o tema de acervo histórico. -->
+            <p class="sc_felipe_selo">Acervo Histórico • Almanaques de Farmácia</p>
+
+            <!-- Título principal do projeto. -->
+            <h1>
+                Almanaque Biotônico Fontoura
+                <span>Edição 1978</span>
+            </h1>
+
+            <!-- Nome do autor do projeto. -->
+            <p class="sc_felipe_autor">
+                Desenvolvido por <strong>Felipe Vitorino Moretti</strong> — ADS Santa Casa de São Paulo
+            </p>
+        </header>
+
+        <!-- 
+            CLASSE REUTILIZADA DA AV1: .sc_felipe_card_perfil
+
+            Antes: era o card principal de perfil.
+            Agora: virou a capa/editorial do caderno ativo.
+            O flexbox foi mantido para colocar imagem e texto lado a lado.
+        -->
+        <section class="sc_felipe_card_perfil">
+
+            <!-- Área da imagem principal do caderno. -->
+            <figure class="sc_felipe_area_foto">
+
+                <!-- 
+                    CLASSE REUTILIZADA DA AV1: .sc_felipe_foto
+
+                    Antes: mostrava a foto do personagem/perfil.
+                    Agora: mostra a página ou imagem histórica do caderno atual.
+
+                    DIRECIONAMENTO:
+                    brasil_1970.png está na mesma pasta do index.html.
+                -->
+                <img
+                    src="brasil_1970.png"
+                    alt="Página Pra Frente Brasil do Almanaque Biotônico Fontoura com a Seleção Brasileira tricampeã no México em 1970"
+                    class="sc_felipe_foto"
+                    id="fotoSecao"
+                >
+
+                <!-- Legenda da imagem, também alterada pelo JavaScript. -->
+                <figcaption id="legendaFoto">
+                    Página “Pra Frente Brasil!” — Seleção brasileira tricampeã, México, 1970.
+                </figcaption>
+
+                <!-- Link de referência histórica usada no projeto. -->
+                <a
+                    href="https://museudouniversodafarmacia.com.br/acervo/colecoes/almanaques-de-farmacia/"
+                    target="_blank"
+                    class="sc_felipe_fonte_img"
+                    id="fonteImagem"
+                >
+                    Fonte de referência: Museu do Universo da Farmácia
+                </a>
+            </figure>
+
+            <!-- 
+                CLASSE REUTILIZADA DA AV1: .sc_felipe_info_principal
+
+                Antes: organizava os textos principais do perfil.
+                Agora: organiza título, subtítulo, introdução e botão do caderno.
+            -->
+            <article class="sc_felipe_info_principal">
+
+                <!-- Indica qual caderno está ativo. -->
+                <p class="sc_felipe_chapeu" id="chapeuSecao">
+                    Caderno 1 • Variedades e Esportes
+                </p>
+
+                <!-- Título do caderno ativo. -->
+                <h2 class="sc_felipe_nome" id="nomeSecao">
+                    Pra Frente Brasil!
+                </h2>
+
+                <!-- Subtítulo do caderno ativo. -->
+                <h3 class="sc_felipe_subtitulo" id="subtituloSecao">
+                    Seleção brasileira tricampeã — México, 1970
+                </h3>
+
+                <!-- Texto introdutório do caderno ativo. -->
+                <p class="sc_felipe_intro" id="introSecao">
+                    Em clima de Copa do Mundo, o Almanaque relembra a trajetória do Brasil nas Copas
+                    e destaca a esperança de conquistar mais um título mundial.
+                </p>
+
+                <!-- 
+                    CLASSE REUTILIZADA DA AV1: .sc_felipe_btn_transformar
+
+                    Antes: era o botão de transformação.
+                    Agora: é o botão de folhear entre os cadernos do almanaque.
+                -->
+                <button class="sc_felipe_btn_transformar" id="btnTransformar">
+                    Folhear: Ir para a Seção de Saúde
+                </button>
+            </article>
+        </section>
+
+        <!-- 
+            CLASSE REUTILIZADA DA AV1: .sc_felipe_grid_cards
+
+            Antes: organizava cards de informações.
+            Agora: organiza notas e textos do almanaque usando CSS Grid.
+        -->
+        <section class="sc_felipe_grid_cards">
+
+            <!-- 
+                CLASSE REUTILIZADA DA AV1: .sc_felipe_card
+
+                Antes: card padrão da AV1.
+                Agora: bloco editorial do almanaque.
+            -->
+            <article class="sc_felipe_card">
+                <span class="sc_felipe_card_rotulo">Época</span>
+                <h4 id="cardIdadeTitulo">Ano de Copa do Mundo</h4>
+            </article>
+
+            <!-- Card sobre o cotidiano brasileiro no ano da Copa. -->
+            <article class="sc_felipe_card">
+                <span class="sc_felipe_card_rotulo">Cotidiano</span>
+                <p id="cardTimeTexto">
+                    Para nós brasileiros, isto basta. Nestes próximos seis meses, este será um assunto obrigatório
+                    no trabalho, em casa, na roda de amigos e em todos os lugares.
+                </p>
+            </article>
+
+            <!-- Card sobre a emoção popular do futebol. -->
+            <article class="sc_felipe_card">
+                <span class="sc_felipe_card_rotulo">Emoção Popular</span>
+                <p id="cardComidaTexto">
+                    Todos comentam a escalação, o melhor esquema de jogo e a emoção do grito de gol preso
+                    na garganta até a explosão: GOOOOL!
+                </p>
+            </article>
+
+            <!-- 
+                CLASSES REUTILIZADAS DA AV1:
+                .sc_felipe_card
+                .sc_felipe_card_descricao
+
+                .sc_felipe_card mantém o estilo do bloco.
+                .sc_felipe_card_descricao faz o texto principal ocupar mais espaço.
+            -->
+            <article class="sc_felipe_card sc_felipe_card_descricao">
+                <span class="sc_felipe_card_rotulo">Texto do Almanaque</span>
+                <p id="cardDescricaoTexto">
+                    O Almanaque relembra que o Brasil já havia sofrido em 1950, se alegrado em 1958,
+                    exultado em 1962 e vibrado com o tricampeonato em 1970, no México. O grande desejo
+                    registrado no texto era ver o Brasil conquistar novamente o título mundial.
+                </p>
+            </article>
+
+            <!-- Card relacionando esporte e sociedade. -->
+            <article class="sc_felipe_card">
+                <span class="sc_felipe_card_rotulo">Esporte e Sociedade</span>
+                <p id="cardExtraUm">
+                    O texto afirma que esporte, higiene, saúde e bem-estar social também são partes importantes
+                    para uma nação manter-se forte e feliz.
+                </p>
+            </article>
+
+            <!-- Card com mensagem final do trecho. -->
+            <article class="sc_felipe_card">
+                <span class="sc_felipe_card_rotulo">Mensagem Final</span>
+                <p id="cardExtraDois">
+                    O trecho termina em tom otimista, desejando que o Brasil tenha um ano melhor,
+                    com conquistas e esperança para o povo brasileiro.
+                </p>
+            </article>
+        </section>
+
+        <!-- Rodapé com crédito da fonte histórica. -->
+        <footer class="sc_felipe_rodape">
+            <p>
+                Projeto acadêmico desenvolvido para fins educacionais. Imagens e inspiração visual a partir do acervo
+                <a href="https://museudouniversodafarmacia.com.br/acervo/colecoes/almanaques-de-farmacia/" target="_blank">
+                    Almanaques de Farmácia — Museu do Universo da Farmácia
+                </a>.
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Importa o JavaScript no final para garantir que o HTML já foi carregado. -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
